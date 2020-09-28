@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>경기도박물관 메인</title>
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+
+	<!--모바일메뉴 제이쿼리(cf.제이쿼리 중복될시 삭제필요)-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    mobile_menu();
+});
+
+function mobile_menu(){
+    /* 변수 선언 */
+    var $menu = null;
+    var $left_gnb = null; // 영역 전체
+    var $depth1_wrap = null;
+    var $depth1 = null;
+    var $depth1_btn = null;
+    
+    /* 시작 함수 */
+    function start(){
+        init();
+        init_event();
+    }
+    /* 변수 초기화 함수 */
+    function init(){
+        $menu = $('.menu2');
+        $left_gnb = $('.left_gnbWrap'); // 영역 전체
+        $depth1_wrap = $('.left_gnb>li');
+        $depth1 = $depth1_wrap.children('ul');
+        $depth1_btn = $depth1_wrap.children('a');
+    }
+    /* 이벤트 함수 */
+    function init_event(){
+        
+        /* 모바일 메뉴 버튼 클릭했을때 모바일 메뉴영역 나오게 하기 */
+        $menu.click(function(event){
+            event.preventDefault();
+            $left_gnb.addClass('on');
+        });
+        
+        /* x버튼 눌렀을때 모바일 메뉴 닫기 */
+        $('.close').click(function(event){
+            event.preventDefault();
+
+            $left_gnb.removeClass('on');
+            
+            // x버튼 누르면 시간차 약간두고 소메뉴 닫히게 하기
+            setTimeout(function(){
+                $depth1_btn.removeClass('on');
+                $depth1.slideUp();
+            },300)
+        });
+        
+        /* depth1의 각메뉴 클릭시 depth2 나오게 하기 */
+        $depth1_btn.click(function(event){
+            event.preventDefault();
+            var $this = $(this);
+            var $this_ul = $this.siblings('ul');
+
+            var check = $this.hasClass('on');
+            if(check){
+                $this.removeClass('on');
+                $this_ul.stop(true,true).slideUp();
+            }else{
+                $depth1_btn.removeClass('on');
+                $depth1.stop().slideUp();
+                $this.addClass('on');
+                $this_ul.stop(true,true).slideDown();
+            }
+        });
+        
+        /* 디바이스 크기 변경시 모바일 메뉴영역 숨기기 */
+        $(window).resize(function(){
+            $left_gnb.removeClass('on');
+        });
+    }
+    
+    start(); // 시작 호출
+}
+	
+	
+</script>
+
+</head>
+
+<body>
+    <div id="wrap">
+        <!--메인 상단-->
+        <div id="main_top">
+           <div class="hidden">메인이미지_경기별곡</div>
+            <header class="header">
+                <div class="h_inner">
+                    <div class="logo">
+                        <a href="index.html"><img src="images/header_logo.png" alt="로고"></a>
+                    </div>
+                    <nav class="nav">
+                        <ul class="main_nav">
+                            <li><a href="info.html" class="nav_tit">이용안내</a>
+                                <ul class="submenu">
+                                    <li><a href="info.html">관람안내</a></li>
+                                    <li><a href="info.html">시설안내</a></li>
+                                    <li><a href="info.html">대관안내</a></li>
+                                    <li><a href="info.html">기증안내</a></li>
+                                    <li><a href="info.html">오시는길</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="info.html" class="nav_tit">전시</a>
+                                <ul class="submenu">
+                                    <li><a href="info.html">전시</a></li>
+                                    <li><a href="info.html">아카이브</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="info.html" class="nav_tit">교육</a>
+                                <ul class="submenu">
+                                    <li><a href="info.html">전체보기</a></li>
+                                    <li><a href="info.html">청소년</a></li>
+                                    <li><a href="info.html">성인</a></li>
+                                    <li><a href="info.html">어린이</a></li>
+                                    <li><a href="info.html">사회복지</a></li>
+                                    <li><a href="info.html">동호회</a></li>
+                                    <li><a href="info.html">문화행사</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="info.html" class="nav_tit">소식</a>
+                                <ul class="submenu">
+                                    <li><a href="info.html">공고공지</a></li>
+                                    <li><a href="info.html">박물관새소식</a></li>
+                                    <li><a href="info.html">뉴스레터</a></li>
+                                    <li><a href="info.html">관장과의 대화</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="info.html" class="nav_tit">유물</a>
+                                <ul class="submenu">
+                                    <li><a href="info.html">소장유물</a></li>
+                                    <li><a href="info.html">기증자 현황</a></li>
+                                    <li><a href="info.html">유물열람 안내</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="info.html" class="nav_tit">박물관</a>
+                                <ul class="submenu">
+                                    <li><a href="info.html">박물관소개</a></li>
+                                    <li><a href="info.html">뮤지엄파크소개</a></li>
+                                    <li><a href="info.html">미션과 비전</a></li>
+                                    <li><a href="info.html">연혁</a></li>
+                                    <li><a href="info.html">박물관직원</a></li>
+                                    <li><a href="info.html">청소년자원봉사</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="infomn">
+                        <div class="qmn">
+                            <ul>
+                                <li><a href="info.html">지지씨멤버스</a></li>
+                                <li><a href="info.html">Q&A</a></li>
+                                <li><a href="info.html">자료실</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="sitemap">
+                            <a href="smbtn">
+                                <!--
+                            <img src="images/header_mgbtn.png" alt="사이트맵">
+                            -->
+                            </a>
+                        </div>
+                        
+                    <div class="menu2">
+						<a href="#"></a>
+					</div>
+				
+					<nav class="left_gnbWrap">
+						<a href="#" class="close">close</a>
+						<ul class="left_gnb">
+							<li>
+								<a href="#">이용안내</a>
+								<ul>
+									<li><a href="info.html">관람안내</a></li>
+                                    <li><a href="info.html">시설안내</a></li>
+                                    <li><a href="info.html">대관안내</a></li>
+                                    <li><a href="info.html">기증안내</a></li>
+                                    <li><a href="info.html">오시는길</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">전시</a>
+								<ul>
+									<li><a href="info.html">전시</a></li>
+                                    <li><a href="info.html">아카이브</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">교육</a>
+								<ul>
+                                    <li><a href="info.html">전체보기</a></li>
+                                    <li><a href="info.html">청소년</a></li>
+                                    <li><a href="info.html">성인</a></li>
+                                    <li><a href="info.html">어린이</a></li>
+                                    <li><a href="info.html">사회복지</a></li>
+                                    <li><a href="info.html">동호회</a></li>
+                                    <li><a href="info.html">문화행사</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">소식</a>
+								<ul>
+                                    <li><a href="info.html">공고공지</a></li>
+                                    <li><a href="info.html">박물관새소식</a></li>
+                                    <li><a href="info.html">뉴스레터</a></li>
+                                    <li><a href="info.html">관장과의 대화</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">유물</a>
+								<ul>
+                                    <li><a href="info.html">소장유물</a></li>
+                                    <li><a href="info.html">기증자 현황</a></li>
+                                    <li><a href="info.html">유물열람 안내</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">박물관</a>
+								<ul>
+                                    <li><a href="info.html">박물관소개</a></li>
+                                    <li><a href="info.html">뮤지엄파크소개</a></li>
+                                    <li><a href="info.html">미션과 비전</a></li>
+                                    <li><a href="info.html">연혁</a></li>
+                                    <li><a href="info.html">박물관직원</a></li>
+                                    <li><a href="info.html">청소년자원봉사</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+                    </div>
+                </div>
+            </header>
+            <div class="anchors">
+                <img src="images/location_01_main.png" alt="앵커">
+            </div>
+            <div class="main_slidebtn">
+                <!--메인 슬라이드 버튼
+                   <div class="btn_prev">
+                    <a href="#">
+                        <img src="images/sbtn_prev.png" alt="이전">
+                    </a>
+                </div>
+                <div class="btn_next">
+                    <a href="#">
+                        <img src="images/sbtn_next.png" alt="이후">
+                    </a>
+                </div>
+                -->
+                <div class="slide_bar">
+                    <a href="#">
+                        <img src="images/main_slidebar(2).png" alt="슬라이드바" class="sdbar">
+                        <img src="images/mb_main_slidebar.png" alt="슬라이드바" class="mb_sdbar">
+                    
+                    </a>
+                </div>
+            </div>
+
+            <div class="main_silde">
+                <ul>
+                    <li class="sldie_con01">
+                        <div class="hidden">메인이미지_경기별곡</div>
+                        <div class="con01_text">
+                            <span class="con_gobtn">
+                                <a href="info.html" target="_self" title="경기별곡 바로가기"></a>
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!--메인 콘텐츠-->
+        <main id="contents">
+            <section class="notice">
+                <div class="inner">
+                    <div class="notice_set">
+                        <div class="box_t">
+                            <h3>박물관 소식</h3>
+                            <p>경기도 박물관의 다채로운 콘텐츠와<br>
+                                새로운 소식을 알려드립니다.</p>
+                            <div class="viewbtn"><a href="info.html">
+                                    <img src="images/con01_viewbtn.png" alt="더보기">
+                                    <img src="images/con01_viewbtn_hover.png" alt="마우스오버" class="noticeview_hv">
+                                </a></div>
+                        </div>
+                        <div class="box_b">
+                            <table class="tb_news">
+                                <thead class="news_t">
+                                    <tr>
+                                        <th>구분</th>
+                                        <th>제목</th>
+                                        <th>등록일</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="news_b">
+                                    <tr>
+                                        <td><img src="images/con01_notice1.png" alt="공지"></td>
+                                        <td><a href="info.html">8월 임시공휴일 개관 및 특별휴관 안내</a></td>
+                                        <td><span>2020-08-11</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="images/con01_notice2.png" alt="전시"></td>
+                                        <td><a href="info.html">재개관 상설전 “경 국가근본의 땅"</a></td>
+                                        <td><span>2020-08-11</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="images/con01_notice2.png" alt="전시"></td>
+                                        <td><a href="info.html">재개관 기념 특별전 “경기별곡: 민화, 경...</a></td>
+                                        <td><span>2020-08-11</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="images/con01_notice1.png" alt="공지"></td>
+                                        <td><a href="info.html">경기도 박물관 상설전시실 전면개편</a></td>
+                                        <td><span>2020-08-11</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="images/con01_notice1.png" alt="공지"></td>
+                                        <td><a href="info.html">경기도박물관 재개관 기념 '박물관 추억'... </a></td>
+                                        <td><span>2020-08-11</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="exhibition">
+                <div class="inner">
+                    <div class="exhibit_title">
+                        <h3>전 시</h3>
+                    </div>
+                    <div class="exhibit_box">
+                        <div class="box1">
+                            <ul>
+                                <li class="box_con1">
+                                    <a href="info.html">
+                                        <h4>여성의 예복, 녹색 원삼</h4>
+                                        <p class="ex_info">
+                                            2018. 05 .01 ~ 2020. 12. 31<br>
+                                            <span>Google Arts & Culture</span></p>
+                                        <p class="ex_cg">온라인전시</p>
+                                    <div>
+                                    <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
+                                    </div>
+                                    </a>
+                                    
+                                </li>
+                                <li class="box_con2">
+                                    <a href="info.html">
+                                        <h4>요지연도</h4>
+                                        <p class="ex_info">
+                                            2018. 05 .01 ~ 2020. 12. 31<br>
+                                            <span>Google Arts & Culture</span></p>
+                                        <p class="ex_cg">온라인전시</p>
+                                        <div>
+                                            <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="box_con3">
+                                    <a href="info.html">
+                                        <h4>장한종의 책가도 병풍</h4>
+                                        <p class="ex_info">
+                                            2018. 05 .01 ~ 2020. 12. 31<br>
+                                            <span>Google Arts & Culture</span></p>
+                                        <p class="ex_cg">온라인전시</p>
+                                        <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
+                                    </a>
+                                </li>
+                                <li class="box_con4">
+                                    <a href="info.html">
+                                        <h4>경기도박물관 소장품전</h4>
+                                        <p class="ex_info">
+                                            2018. 05 .01 ~ 2020. 12. 31<br>
+                                            <span>Google Arts & Culture</span></p>
+                                        <p class="ex_cg">온라인전시</p>
+                                        <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="box2">
+                            <div class="box_con5">
+                                <a href="info.html">
+                                    <h4>경기별곡<br>: 민화, 경기를 노래하다</h4>
+                                    <p class="ex_info">
+                                        2020. 08 .04 ~ 2021. 02. 14<br>
+                                        <span>경기도박물관 1층 기획전시실</span>
+                                    </p>
+                                    <p class="ex_cg">특별전시</p>
+                                    <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="relics">
+                <div class="inner">
+                    <div class="relics_title">
+                        <h3>소장 유물</h3>
+                    </div>
+                    <div class="relics_set">
+                        <div class="relics_tbox"></div>
+                        <div class="relics_slide">
+                            <ul class="relics_list">
+                                <li class="silde_con1"><a href="info.html">
+                                        <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
+                                    </a></li>
+
+                                <li class="silde_con2"><a href="info.html">
+                                        <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
+                                    </a></li>
+
+                                <li class="silde_con3"><a href="info.html">
+                                        <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
+                                    </a></li>
+                            </ul>
+                        </div>
+                        <div class="slide_btn">
+                            <div class="btn_prev">
+                                <a href="#"><img src="images/sd_btn_prv.png" alt="이전"></a>
+                            </div>
+                            <div class="btn_next">
+                                <a href="#"><img src="images/sd_btn_next.png" alt="이후"></a>
+                            </div>
+                        </div>
+                        <div class="slide_bar">
+                            <a href="#"><img src="images/con03_slidebar.png" alt="슬라이드바"></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!--메인 하단-->
+        <footer id="footer">
+            <!--befor가상태그 라인-->
+            <div class="footer_set">
+                <h2 class="ft_logo">
+                    <a href="#"><img src="images/footer_logo.png" alt="logo"></a>
+                </h2>
+                <div class="footer_inner">
+                    <div class="utils">
+                        <ul class="private">
+                            <li><a href="info.html">개인정보취급방침</a></li>
+                            <li><a href="info.html">이용약관</a></li>
+                            <li><a href="info.html">행정정보공개</a></li>
+                            <li><a href="info.html">클린신고센터</a></li>
+                        </ul>
+                        <ul class="socials">
+                            <li>
+                                <a href="#" target="_blank" title="경기도박물관 페이스북"><img src="images/footer_sns_f.png" alt="페이스북"></a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank" title="경기도박물관 인스타그램"><img src="images/footer_sns_i.png" alt="인스타그램"></a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank" title="경기도박물관 카카오톡"><img src="images/footer_sns_k.png" alt="카카오톡"></a>
+                            </li>
+                        </ul>
+                        <!--after 클리어-->
+                    </div>
+                    <div class="ft_link">
+                        <div class="site_ggcf">
+                            <a href="#">
+                                <h4>경기문화재단</h4>
+                                <img src="images/footer_gobtn.png" alt="경기문화재단" class="site_ggcf">
+                            </a>
+                        </div>
+                        <div class="site_gcm">
+                            <a href="#">
+                                <h4>경기도어린이박물관</h4>
+                                <img src="images/footer_gobtn.png" alt="경기문화재단" class="site_gcm">
+                            </a>
+                        </div>
+                        <div class="site_nj">
+                            <a href="#">
+                                <h4>백남준아트센터</h4>
+                                <img src="images/footer_gobtn.png" alt="경기문화재단" class="site_nj">
+                            </a>
+                        </div>
+                    </div>
+                    <ul class="rights">
+                        <li class="address">
+                            (재)경기문화재단 경기도박물관 (17072) 경기도 용인시 기흥구 상갈로 6 (상갈동)
+                        </li>
+                        <li class="about">
+                            <ul class="about_list">
+                                <li><span>사업자등록번호 &nbsp</span> 142-82-01158</li>
+                                <li><span>| &nbsp 대표이사 &nbsp</span> 강헌</li>
+                            </ul>
+                        <li class="contact">
+                            <ul class="contact_list">
+                                <li class="tel"><span>대표전화 &nbsp</span> 031-288-5300</li>
+                                <li class="tel_info"><span>| &nbsp 관람안내 &nbsp</span> 031-288-5400</li>
+                                <li class="fax"><span>| &nbsp FAX &nbsp</span> 031-288-5339</li>
+                            </ul>
+                        </li>
+                        <li class="copy">
+                            © Copyright GGCF. ALL RIGHTS RESERVED.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body></html>
