@@ -9,6 +9,7 @@
     padding: 0;
     margin: 0;
     font-family: 'font/NotoSansCJKkr-Regular', sans-serif;
+	box-sizing: border-box;
 }
 
 html {
@@ -47,21 +48,9 @@ a {
     margin: 0 auto;
 }
 
-/* 상단+메인이미지 */
-#main_top {
-    position: relative;
-    width: 100%;
-    height: 1006px;
-    background-image: url(../images/main_sdimg_none.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    /*
-    background-attachment: fixed;
-    */
-}
 
-#main_top .header {
+/* 상단_헤더*/
+#header {
     position: absolute;
     top: 0;
     width: 100%;
@@ -71,14 +60,14 @@ a {
 	position: fixed;
 }
 
-#main_top .header .h_inner {
+#header .h_inner {
     width: 84%/* 1600px */;
     height: 100px;
     margin: 0 auto;
     position: relative;
 }
 
-#main_top .header .h_inner:after {
+#header .h_inner:after {
     display: inline-block;
     content: "";
     clear: both;
@@ -313,99 +302,181 @@ a {
         display: none;
 }
 
-#main_top .main_silde {
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 1006px;
-}
 
-.main_silde ul {}
-
-.main_silde ul .sldie_con01 {
-    position: absolute;
-    top: 0px;
-    left: 0px;
+/* 메인이미지 */
+#mainimg {/*main_top 수정*/
+    position: relative;
     width: 100%;
-    height: 100%;
-    /*
+    height: 1006px;	
+	/*
     background-image: url(../images/main_sdimg_none.png);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center center;
-    overflow: hidden;*/
+    background-position: center center;    
+    background-attachment: fixed;
+	*/
 }
 
-.sldie_con01 .con01_text {
-    position: absolute;
-    top: 65.5%;
-    /*660px*/
-    left: 30%;
-    /*583px*/
-    width: 280px;
-    height: 210px;
-    /*position: relative;*/
-}
+	/* 메인 슬라이드( 제이쿼리추가)영역 시작*/
+    .slider {
+        width: 100%;
+        margin: 100px auto;
+    }
 
-.con01_text .con_gobtn a {
-    position: absolute;
-    top: 38%;
-    /*80px;*/
-    right: 0px;
-    /*235px*/
-    display: block;
-    width: 31px;
-    height: 31px;
-    font-size: 0;
-    /*box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);*/
-    background-image: url(../images/main_viewbtn.png);
+    .slick-slide {
+      margin: 0px 10px;
+    }
+
+    .slick-slide div{/*.slick-slide img 수정*/
+    width: 100%;
+    height: 906px;
+		position: relative;
+    }
+
+.slick-slide .main01{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	background-image: url(../images/main_sdimg_none.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-    transform: scale(1);
-    transition: all 0.5s;
+	
 }
+.slick-slide .viewbtn{
+	position: absolute;	
+	width: 31px;
+	height: 31px;
+	top: 76%;
+	left: 43%;
+	
+}
+.slick-slide .main02{
+	display: inline-block;
+	width: 100%;
+	background-image: url(../images/main_sdimg_none.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+/*
+.slick-slide .main01>.main01_01{/*추가부분
+	float: left;
+	display: inline-block;
+	margin-left: 10%;	
+	width: 500px;
+	height: 500px;
+}
+.slick-slide .main01>.main01_02{/*추가부분
+	float: right;
+	display: inline-block;
+	margin-right: 10%;	
+	width: 500px;
+	height: 500px;
+}
+*/
+    .slick-prev:before,
+    .slick-next:before {
+      color: black;
+    }
 
-.con01_text .con_gobtn a:hover {
-    transform: scale(1.2);
-    /*transform: rotate(180deg);*/
-    transition: all 0.8s;
-}
+    .slick-slide {
+      transition: all ease-in-out .3s;
+		/*opacity: 1; 삭제*/
+      
+    }
+    
+    .slick-active {
+      /*opacity: 5; 삭제*/
+    }
+
+    .slick-current {
+      opacity: 1;
+    }
+	/* 메인 슬라이드(제이쿼리추가)영역 끝*/
 
 
 /* 메인 콘텐츠 */
 #contents {}
 
+
+/* 풀페이지 애니메이션 임시스타일 영역 시작*/
+
+	
+#section3 .intro{
+	left: -130%;
+	position:relative;
+    transition: all 600ms ease;
+}
+
+#section3 .intro{
+    left: -130%;
+    position:relative;
+    transition: all 600ms ease;
+}
+
+    /**
+    * Here we fire the animation for section 3(여기에서 섹션 3의 애니메이션을 시작함).
+    * As the fp-viewing class in the body changes on each section and slide(본문의 fp-viewing 클래스가 각 섹션과 슬라이드에서 변경됨에 따라).
+    */
+    body.fp-viewing-3rdPage #section3 .intro{
+       left: 0%;
+    }
+
+/* 풀페이지 애니메이션 임시스타일 영역 끝*/
+
+
+
 /* 메인콘텐츠_공지 */
-#contents .notice {
+#notice {/*#contents .notice*/
     width: 100%;
-    height: 1006px;
+    height: 1006px;	
     background-image: url(../images/con_bg01.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-    /*background-attachment: fixed;*/
+	/*background-attachment: fixed;*/
 }
+/*
+#notice .noticeimg{/*#section2 img*//* 풀페이지 애니메이션스타일
+	  position:relative;
+      transition: all 1000ms ease;/*transition: all 600ms ease;
+	  float: right;
+	  padding-right: 11.5%;
+	  opacity: 0;
+	overflow: hidden;
+	  }
+*/
 
-.notice .inner {
+#notice .intro {/*#contents .notice .inner*/
     width: 1240px;
     margin: 0 auto;
 }
 
-.notice .inner .notice_set {
-    padding-top: 300px;
+#notice .intro .notice_set {/*#contents .notice .inner .notice_set */
+    padding-top: 20px;
+	/*padding-top: 300px;*/
+	/*float: left;*/
 }
 
-.notice_set .box_t {
+#notice .notice_set .box_t {/*section2 p 애니메이션 적용*/
     position: relative;
-    width: 560px
-        /*272px;*/
-    ;
-    height: 195px
-        /*56px;*/
-    ;
+    width: 560px;/*272px;*/
+    height: 195px;/*56px;*/
     background-size: 384px auto;
+	opacity: 0;
+	transition: all 600ms ease;/*transition: all 600ms ease;*/
 }
+/* 애니메이션 제이쿼리 적용 CSS(section2 p 애니메이션)
+#notice h3{/*section2 p*
+	opacity: 0;
+    transition: all 600ms ease;/*transition: all 600ms ease;*
+}
+#notice p{/*section2 p*
+	opacity: 0;
+    transition: all 1200ms ease;/*transition: all 600ms ease;*
+}
+*/
 
 .box_t h3 {
     font-size: 5.5rem;
@@ -417,13 +488,17 @@ a {
     margin-top: 24px;
 }
 
-.box_t .viewbtn {
+.box_t .viewbtn {/*#section2 img 애니메이션 적용*/
+	/*float: right;*/
     position: absolute;
     top: 120px;
-    right: 0;
+	left: 75%;
+    /*right: 0;*/
     width: 70px;
     height: 22px;
     font-size: 1.1rem;
+	opacity: 0;	
+	transition: all 1200ms ease;/*transition: all 600ms ease;*/
 }
 
 .viewbtn .noticeview_hv {
@@ -443,9 +518,11 @@ a {
     transition: all 0.6s;
 }
 
-.notice_set .box_b {
+.notice_set .box_b {/*section2 p 애니메이션 적용*/
     width: 560px;
     height: 270px;
+	opacity: 0;
+    transition: all 1200ms ease;/*transition: all 600ms ease;*/	
 }
 
 .notice_set .box_b .tb_news {
@@ -492,7 +569,7 @@ td > span {
 
 
 /* 메인콘텐츠_전시 */
-#contents .exhibition {
+#exhibition {/*#contents .exhibition */
     width: 100%;
     height: 1006px;
     background-image: url(../images/con_bg02.jpg);
@@ -502,23 +579,33 @@ td > span {
     /*background-attachment: fixed;*/
 }
 
-#contents .exhibition .inner {
+#exhibition .intro {/*section3 .intro*//*#exhibition .inner*/
     width: 1240px;
+	margin: 0 auto;   
     /*height: 860px;*/
-    padding-top: 205px;
+    /*padding-top: 205px;*/    
 }
 
-.inner .exhibit_title {
+
+#exhibition .intro .exhibit_title {/*.inner .exhibit_title*/
     width: 100%;
     /*height: 130px;*/
     text-align: center;
+	
 }
 
+#exhibition .intro .exhibit_title h3{/*section2 p*/
+	font-size: 5.5rem;    
+}
+
+/*
 .exhibit_title h3 {
     font-size: 5.5rem;
 }
+*/
 
-.inner .exhibit_box {
+
+.intro .exhibit_box {/*.inner .exhibit_box*/
     width: 100%;
     height: 526px;
     margin-top: 80px;
@@ -809,8 +896,9 @@ td > span {
 */
 
 
+
 /* 메인콘텐츠_소장유물 */
-#contents .relics {
+#relics {/*#contents .relics*/
     width: 100%;
     height: 1006px;
     /*
@@ -821,24 +909,25 @@ td > span {
     background-attachment: fixed;*/
 }
 
-#contents .relics .inner {
+#relics .intro {/*#contents .relics .inner*/
     width: 1240px;
+    margin: 0 auto;
     /*height: 860px;*/
-    padding-top: 200px;
-
+	/*padding-top: 200px;*/
 }
 
-.inner .relics_title {
+.intro .relics_title {/*.inner .relics_title*/
     width: 100%;
     /*height: 130px;*/
     text-align: center;
+    z-index: 1;
 }
 
 .relics_title h3 {
     font-size: 5.5rem;
 }
 
-.inner .relics_set {
+.intro .relics_set {/*.inner .relics_set*/
     position: relative;
     width: 100%;
     height: 502px;
@@ -856,9 +945,8 @@ td > span {
 }
 
 .relics_set .relics_slide {
-    display: inline-block
-        /* float: left*/
-    ;
+    display: inline-block;
+    /* float: left;*/
     /*width: 100%;*/
 }
 
@@ -896,9 +984,9 @@ td > span {
     opacity: 0;
     position: absolute;
     top: 44.6%;
-    /*중앙 223px*/
+    /*중앙 44.6%; 223px*/
     left: 41.4%;
-    /*중앙 126px*/
+    /*중앙 41.4%; 126px*/
     transform: scale(0.5);
     transition: all 0.5s;
 }
@@ -912,11 +1000,13 @@ td > span {
 .relics_slide .silde_con1 a {
     width: 304px;
     height: 500px;
+	/*
     background-image: url(../images/con03_img01.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
     transition: all 0.5s;
+	*/
 }
 
 .relics_slide .silde_con1 a:hover {
@@ -929,14 +1019,16 @@ td > span {
     transition: all 0.5s;
 }
 
-.relics_slide .silde_con2 a {
+.relics_slide .silde_con2 a {/*relics_slide*/
     width: 304px;
     height: 500px;
+	/*
     background-image: url(../images/con03_img02.png);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
     transition: all 0.5s;
+	*/
 }
 
 .relics_slide .silde_con2 a:hover {
@@ -953,11 +1045,13 @@ td > span {
 .relics_slide .silde_con3 a {
     width: 304px;
     height: 500px;
+	/*
     background-image: url(../images/con03_img03.png);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
     transition: all 0.5s;
+	*/
 }
 
 .relics_slide .silde_con3 a:hover {
@@ -1106,7 +1200,7 @@ td > span {
 }
 
 .ft_link > div a {
-    width: 90%;
+    width: 99%;
     height: 100%;
     color: #ffffff;
     line-height: 36px;
@@ -1183,10 +1277,12 @@ td > span {
 
 @media (max-width:1279px) {
 
-    .inner {
+    .inner{
         width: 98%;
     }
-
+    .intro {
+        width: 98%;
+    }
     .anchors {
         display: none;
         /*
@@ -1194,17 +1290,21 @@ td > span {
         right: 1.5%;
         */
     }
-    #main_top {
-    width: 100%;
-    height: 0;
-    background-image: url(../images/mb_main_img01(2).png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    padding-top: calc(1024/767*100%);
+	#mainimg {/*#maintop*/
+		width: 100%;
+		height: auto;
+		/*	
+		background-image: url(../images/mb_main_img01(2).png);
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center center;
+		padding-top: calc(1024/767*100%);*/	
+    }
+    #header {
+    background-color: rgba(255, 255, 255, 0);
     }
 
-    #main_top .header .h_inner {
+    #header .h_inner {/* #maintop .header .h_inner */
         width: 98%;
     }
 
@@ -1305,14 +1405,14 @@ a.close{
     .sldie_con01 .con01_text {}
 
 
-    /* 태블릿_공지 */
+    /* 태블릿_박물관소식 */
     
-    .notice .inner {
+    #notice .intro {/*.notice .inner*/
         width: 98%;
     }
     
-    .notice .inner .notice_set {
-        padding-top: 40%;
+    #notice .intro .notice_set {/*.notice .inner .notice_set*/
+        /*padding-top: 40%;*/
     }
 
     .notice_set .box_t {
@@ -1330,9 +1430,10 @@ a.close{
 
 
     /* 태블릿_전시 */
-    #contents .exhibition .inner {
+    #exhibition .intro {/* #contents .exhibition .inner*/
         width: 98%;
-        padding-top: 10%;
+        padding-top: 8%;
+        height: 100%;
     }
 
     .exhibit_box .box1 {
@@ -1393,7 +1494,7 @@ a.close{
         /*190px;*/
         width: 100%;
         margin-right: 2%;
-        margin-top: 20px;
+        margin-top: 15px;
     }
     .box2 .box_con5:hover {
         background-image: url(../images/mb_ex_con05.jpg);
@@ -1404,7 +1505,7 @@ a.close{
         /*190px;*/
         width: 100%;
         margin-right: 2%;
-        margin-top: 20px;   
+        margin-top: 15px;   
     }
     .box2 > .box_con5 > a > .viewbtn_hover {
         position: absolute;
@@ -1421,9 +1522,9 @@ a.close{
 
 
     /* 태블릿_유물 */
-    #contents .relics .inner {
+    #relics .intro {/*#contents .relics .inner*/
         width: 98%;
-        padding-top: 15%;
+        /*padding-top: 15%;*/
     }
 
     .slide_btn .btn_prev {
@@ -1443,29 +1544,32 @@ a.close{
         background-size: cover;
         background-position: center center;
         overflow-x: hidden;
+        margin-top: -10%;
+        z-index: 999;
         padding-top: calc(127/741*100%);
     }
 
-    .inner .relics_title {
+    .intro .relics_title {/*.inner .relics_title */
         height: auto;
     }
 	
-    .inner .relics_set {
-        margin-top: 0px;
-		height: auto;
+    .intro .relics_set {/*.inner .relics_set*/
+        margin-top: 0px;		        
     }
 
     .relics_set .relics_slide {
         width: 100%;
         /* margin-top: -50px; */
         overflow-x: hidden;
-        z-index: 999;
+        z-index: 2;
+        height: auto;
     }
 
     .relics_set .relics_slide > ul {
         width: 941px;
+        height: auto;
         margin: 0 auto;
-        overflow-x: hidden;
+        overflow-x: hidden;        
     }
 
     .relics_set .relics_slide > ul > li {
@@ -1493,7 +1597,7 @@ a.close{
         display: none;
     }
     #footer {
-        padding: 52px 0 86px;
+        padding: 52px 0 86px;        
     }
 
     .footer_set {
@@ -1515,7 +1619,7 @@ a.close{
 
     .utils .private {
         float: none;
-        margin-top: 58px;
+        margin-top: 45px;
     }
 
     .private li {
@@ -1546,7 +1650,7 @@ a.close{
 
     .utils .socials {
         float: none;
-        margin-top: 30px;
+        margin-top: 25px;
         text-align: center;
     }
 
@@ -1572,7 +1676,7 @@ a.close{
 
     .footer_inner .ft_link {
         position: static;
-        margin-top: 38px;
+        margin-top: 25px;
     }
 
     .ft_link > div {
@@ -1618,6 +1722,9 @@ a.close{
     .footer_inner .rights > li:last-child {
         margin-top: 35px;
         font-size: 2.2rem;
+    }
+    .footer_inner .rights .about{
+        display: none;
     }
 
 }
@@ -1703,9 +1810,11 @@ a.close{
         width: 42%;
         height: 18%;
     }
+	/*
     .main_slidebtn .slide_bar {
         top: 75%;
     }
+	*/
     
         /* 모바일_공지 */
     .notice .inner .notice_set {
@@ -1809,10 +1918,10 @@ a.close{
         margin-top: -35px;
         */
         width: 85%;
-        height: 0;
+        /*height: 0;*/
         left: 0;
         right: 0;
-		padding-top: calc(500/304*100%);
+		/*padding-top: calc(500/304*100%);*/
         position: relative;
     }
     .relics_set .relics_slide > ul > li{
@@ -1837,9 +1946,12 @@ a.close{
     .relics_set .slide_btn {
         display: none;
     }
+	
+	/*
     .relics_set .slide_bar {
     	bottom: 10%;
     }
+	*/
     
     /* 모바일_푸터 */
     #footer {
@@ -1894,12 +2006,12 @@ a.close{
         line-height: 40px;
     }
     .footer_inner .rights {
-        margin-top: 27px;
+        /margin-top: 27px;
     }
-    .footer_inner .rights li {
+    .footer_inner .rights li{
         font-size: 1.4rem;
     }
-    .rights .about{
+    .footer_inner .rights .about{
         display: none;
     }
     .footer_inner .rights > li:last-child {

@@ -7,103 +7,280 @@
     <title>경기도박물관 메인</title>
     <link href="css/style.css" type="text/css" rel="stylesheet">
 
-	<!--모바일메뉴 제이쿼리(cf.제이쿼리 중복될시 삭제필요)-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--텍스트효과 CSS-->
 
-<script>
-$(document).ready(function(){
-    mobile_menu();
-});
+    <!--풀페이지스크롤 + 애니메이션 CSS-->
+    <link rel="stylesheet" type="text/css" href="css/fullpage.css" />
 
-function mobile_menu(){
-    /* 변수 선언 */
-    var $menu = null;
-    var $left_gnb = null; // 영역 전체
-    var $depth1_wrap = null;
-    var $depth1 = null;
-    var $depth1_btn = null;
-    
-    /* 시작 함수 */
-    function start(){
-        init();
-        init_event();
-    }
-    /* 변수 초기화 함수 */
-    function init(){
-        $menu = $('.menu2');
-        $left_gnb = $('.left_gnbWrap'); // 영역 전체
-        $depth1_wrap = $('.left_gnb>li');
-        $depth1 = $depth1_wrap.children('ul');
-        $depth1_btn = $depth1_wrap.children('a');
-    }
-    /* 이벤트 함수 */
-    function init_event(){
-        
-        /* 모바일 메뉴 버튼 클릭했을때 모바일 메뉴영역 나오게 하기 */
-        $menu.click(function(event){
-            event.preventDefault();
-            $left_gnb.addClass('on');
+    <!--메인이미지슬라이드 CSS-->
+    <link rel="stylesheet" type="text/css" href="css/slick.css">
+    <link rel="stylesheet" type="text/css" href="css/slick-theme.css">
+
+    <!--유물슬라이드 CSS-->
+    <link rel="stylesheet" type="text/css" href="css/slick2.css" />
+    <!--// Add the new slick-theme.css if you want the default styling-->
+    <link rel="stylesheet" type="text/css" href="css/slick-theme2.css" />
+
+    <!--모바일메뉴 JS스크립트(cf.제이쿼리 중복될시 삭제필요)-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            mobile_menu();
         });
-        
-        /* x버튼 눌렀을때 모바일 메뉴 닫기 */
-        $('.close').click(function(event){
-            event.preventDefault();
 
-            $left_gnb.removeClass('on');
-            
-            // x버튼 누르면 시간차 약간두고 소메뉴 닫히게 하기
-            setTimeout(function(){
-                $depth1_btn.removeClass('on');
-                $depth1.slideUp();
-            },300)
-        });
-        
-        /* depth1의 각메뉴 클릭시 depth2 나오게 하기 */
-        $depth1_btn.click(function(event){
-            event.preventDefault();
-            var $this = $(this);
-            var $this_ul = $this.siblings('ul');
+        function mobile_menu() {
+            /* 변수 선언 */
+            var $menu = null;
+            var $left_gnb = null; // 영역 전체
+            var $depth1_wrap = null;
+            var $depth1 = null;
+            var $depth1_btn = null;
 
-            var check = $this.hasClass('on');
-            if(check){
-                $this.removeClass('on');
-                $this_ul.stop(true,true).slideUp();
-            }else{
-                $depth1_btn.removeClass('on');
-                $depth1.stop().slideUp();
-                $this.addClass('on');
-                $this_ul.stop(true,true).slideDown();
+            /* 시작 함수 */
+            function start() {
+                init();
+                init_event();
             }
-        });
+            /* 변수 초기화 함수 */
+            function init() {
+                $menu = $('.menu2');
+                $left_gnb = $('.left_gnbWrap'); // 영역 전체
+                $depth1_wrap = $('.left_gnb>li');
+                $depth1 = $depth1_wrap.children('ul');
+                $depth1_btn = $depth1_wrap.children('a');
+            }
+            /* 이벤트 함수 */
+            function init_event() {
+
+                /* 모바일 메뉴 버튼 클릭했을때 모바일 메뉴영역 나오게 하기 */
+                $menu.click(function(event) {
+                    event.preventDefault();
+                    $left_gnb.addClass('on');
+                });
+
+                /* x버튼 눌렀을때 모바일 메뉴 닫기 */
+                $('.close').click(function(event) {
+                    event.preventDefault();
+
+                    $left_gnb.removeClass('on');
+
+                    // x버튼 누르면 시간차 약간두고 소메뉴 닫히게 하기
+                    setTimeout(function() {
+                        $depth1_btn.removeClass('on');
+                        $depth1.slideUp();
+                    }, 300)
+                });
+
+                /* depth1의 각메뉴 클릭시 depth2 나오게 하기 */
+                $depth1_btn.click(function(event) {
+                    event.preventDefault();
+                    var $this = $(this);
+                    var $this_ul = $this.siblings('ul');
+
+                    var check = $this.hasClass('on');
+                    if (check) {
+                        $this.removeClass('on');
+                        $this_ul.stop(true, true).slideUp();
+                    } else {
+                        $depth1_btn.removeClass('on');
+                        $depth1.stop().slideUp();
+                        $this.addClass('on');
+                        $this_ul.stop(true, true).slideDown();
+                    }
+                });
+
+                /* 디바이스 크기 변경시 모바일 메뉴영역 숨기기 */
+                $(window).resize(function() {
+                    $left_gnb.removeClass('on');
+                });
+            }
+
+            start(); // 시작 호출
+        }
+
+    </script>
+
+
+    <!--풀페이지 애니메이션 효과 스타일-->
+    <style>
+        #exhibition .intro {
+            overflow: hidden;
+        }
+        #exhibition .intro .exhibit_box .box1 {
+            /*section3 .intro*/
+            bottom: -50%;
+            /*left: -130%;*/
+            position: relative;
+            opacity: 0;
+            transition: all 1200ms ease;
+        }
+        #exhibition .intro .exhibit_box .box2 {
+            /*section3 .intro*/
+            bottom: -100%;
+            /*left: -130%;*/
+            position: relative;
+            opacity: 0;
+            transition: all 1200ms ease;
+        }
+        /*
+        #exhibition .intro .exhibit_title {
+            /*section3 .intro
+            bottom: -10%;/*left: -130%;
+            position: relative;
+            transition: all 1600ms ease;          
+        }
+        */
+        #exhibition .intro .exhibit_title h3 {
+            /*section3 .intro*/
+             bottom: -20%;/*left: -130%;*/
+            transition: all 1600ms ease;
+            opacity: 0;
+        }
+
+        /**
+    * Here we fire the animation for section 3(여기에서 섹션 3의 애니메이션을 시작함).
+    * As the fp-viewing class in the body changes on each section and slide(본문의 fp-viewing 클래스가 각 섹션과 슬라이드에서 변경됨에 따라).
+    */
+
+        body.fp-viewing-3rdPage #exhibition .intro .exhibit_box .box1 {
+            /*body.fp-viewing-3rdPage #section3 .intro*/
+            bottom: 0%; /*left: 0%;*/ 
+            opacity: 1;
+        }
+        body.fp-viewing-3rdPage #exhibition .intro .exhibit_box .box2 {
+            /*body.fp-viewing-3rdPage #section3 .intro*/
+            bottom: 0%; /*left: 0%;*/
+            opacity: 1;
+        }
+        /*
+        body.fp-viewing-3rdPage #exhibition .intro .exhibit_title {/*body.fp-viewing-3rdPage #section3 .intro
+            bottom: 0%;/*left: 0%;            
+        }
+        */
+        body.fp-viewing-3rdPage #exhibition .intro .exhibit_title h3 {
+            /*body.fp-viewing-3rdPage #section3 .intro*/
+             bottom: 0%;
+            opacity: 1;
+        }
         
-        /* 디바이스 크기 변경시 모바일 메뉴영역 숨기기 */
-        $(window).resize(function(){
-            $left_gnb.removeClass('on');
-        });
-    }
-    
-    start(); // 시작 호출
-}
-	
-	
-</script>
+                
+        #relics .intro .relics_title{
+            /*section3 .intro*/
+            bottom: -20%;/*left: -130%;*/
+            position: relative;            
+            transition: all 1600ms ease;
+        }
+        #relics .intro .relics_title h3{
+            /*section3 .intro*/
+            opacity: 0;
+            transition: all 1600ms ease;
+        }
+        body.fp-viewing-4thpage #relics .intro .relics_title{
+            /*body.fp-viewing-3rdPage #section3 .intro*/
+            bottom: 0%; /*left: 0%;*/             
+        }        
+        body.fp-viewing-4thpage #relics .intro .relics_title h3{
+            /*body.fp-viewing-3rdPage #section3 .intro*/            
+            opacity: 1;
+        }
+        
+    </style>
+
 
 </head>
 
 <body>
     <div id="wrap">
-        <!--메인 상단-->
-        <div id="main_top">
-           <div class="hidden">메인이미지_경기별곡</div>
-            <header class="header">
-                <div class="h_inner">
-                    <div class="logo">
-                        <a href="index.html"><img src="images/header_logo.png" alt="로고"></a>
+        <!--상단영역-->
+        <!--헤더-->
+        <header id="header">
+            <div class="h_inner">
+                <div class="logo">
+                    <a href="index.html"><img src="images/header_logo.png" alt="로고"></a>
+                </div>
+                <nav class="nav">
+                    <ul class="main_nav">
+                        <li><a href="info.html" class="nav_tit">이용안내</a>
+                            <ul class="submenu">
+                                <li><a href="info.html">관람안내</a></li>
+                                <li><a href="info.html">시설안내</a></li>
+                                <li><a href="info.html">대관안내</a></li>
+                                <li><a href="info.html">기증안내</a></li>
+                                <li><a href="info.html">오시는길</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="info.html" class="nav_tit">전시</a>
+                            <ul class="submenu">
+                                <li><a href="info.html">전시</a></li>
+                                <li><a href="info.html">아카이브</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="info.html" class="nav_tit">교육</a>
+                            <ul class="submenu">
+                                <li><a href="info.html">전체보기</a></li>
+                                <li><a href="info.html">청소년</a></li>
+                                <li><a href="info.html">성인</a></li>
+                                <li><a href="info.html">어린이</a></li>
+                                <li><a href="info.html">사회복지</a></li>
+                                <li><a href="info.html">동호회</a></li>
+                                <li><a href="info.html">문화행사</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="info.html" class="nav_tit">소식</a>
+                            <ul class="submenu">
+                                <li><a href="info.html">공고공지</a></li>
+                                <li><a href="info.html">박물관새소식</a></li>
+                                <li><a href="info.html">뉴스레터</a></li>
+                                <li><a href="info.html">관장과의 대화</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="info.html" class="nav_tit">유물</a>
+                            <ul class="submenu">
+                                <li><a href="info.html">소장유물</a></li>
+                                <li><a href="info.html">기증자 현황</a></li>
+                                <li><a href="info.html">유물열람 안내</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="info.html" class="nav_tit">박물관</a>
+                            <ul class="submenu">
+                                <li><a href="info.html">박물관소개</a></li>
+                                <li><a href="info.html">뮤지엄파크소개</a></li>
+                                <li><a href="info.html">미션과 비전</a></li>
+                                <li><a href="info.html">연혁</a></li>
+                                <li><a href="info.html">박물관직원</a></li>
+                                <li><a href="info.html">청소년자원봉사</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="infomn">
+                    <div class="qmn">
+                        <ul>
+                            <li><a href="info.html">지지씨멤버스</a></li>
+                            <li><a href="info.html">Q&A</a></li>
+                            <li><a href="info.html">자료실</a></li>
+                        </ul>
                     </div>
-                    <nav class="nav">
-                        <ul class="main_nav">
-                            <li><a href="info.html" class="nav_tit">이용안내</a>
-                                <ul class="submenu">
+
+                    <div class="sitemap">
+                        <a href="smbtn">
+                            <!--
+                            <img src="images/header_mgbtn.png" alt="사이트맵">
+                            -->
+                        </a>
+                    </div>
+
+                    <div class="menu2">
+                        <a href="#"></a>
+                    </div>
+
+                    <nav class="left_gnbWrap">
+                        <a href="#" class="close">close</a>
+                        <ul class="left_gnb">
+                            <li>
+                                <a href="#">이용안내</a>
+                                <ul>
                                     <li><a href="info.html">관람안내</a></li>
                                     <li><a href="info.html">시설안내</a></li>
                                     <li><a href="info.html">대관안내</a></li>
@@ -111,14 +288,16 @@ function mobile_menu(){
                                     <li><a href="info.html">오시는길</a></li>
                                 </ul>
                             </li>
-                            <li><a href="info.html" class="nav_tit">전시</a>
-                                <ul class="submenu">
+                            <li>
+                                <a href="#">전시</a>
+                                <ul>
                                     <li><a href="info.html">전시</a></li>
                                     <li><a href="info.html">아카이브</a></li>
                                 </ul>
                             </li>
-                            <li><a href="info.html" class="nav_tit">교육</a>
-                                <ul class="submenu">
+                            <li>
+                                <a href="#">교육</a>
+                                <ul>
                                     <li><a href="info.html">전체보기</a></li>
                                     <li><a href="info.html">청소년</a></li>
                                     <li><a href="info.html">성인</a></li>
@@ -128,23 +307,26 @@ function mobile_menu(){
                                     <li><a href="info.html">문화행사</a></li>
                                 </ul>
                             </li>
-                            <li><a href="info.html" class="nav_tit">소식</a>
-                                <ul class="submenu">
+                            <li>
+                                <a href="#">소식</a>
+                                <ul>
                                     <li><a href="info.html">공고공지</a></li>
                                     <li><a href="info.html">박물관새소식</a></li>
                                     <li><a href="info.html">뉴스레터</a></li>
                                     <li><a href="info.html">관장과의 대화</a></li>
                                 </ul>
                             </li>
-                            <li><a href="info.html" class="nav_tit">유물</a>
-                                <ul class="submenu">
+                            <li>
+                                <a href="#">유물</a>
+                                <ul>
                                     <li><a href="info.html">소장유물</a></li>
                                     <li><a href="info.html">기증자 현황</a></li>
                                     <li><a href="info.html">유물열람 안내</a></li>
                                 </ul>
                             </li>
-                            <li><a href="info.html" class="nav_tit">박물관</a>
-                                <ul class="submenu">
+                            <li>
+                                <a href="#">박물관</a>
+                                <ul>
                                     <li><a href="info.html">박물관소개</a></li>
                                     <li><a href="info.html">뮤지엄파크소개</a></li>
                                     <li><a href="info.html">미션과 비전</a></li>
@@ -155,98 +337,70 @@ function mobile_menu(){
                             </li>
                         </ul>
                     </nav>
-                    <div class="infomn">
-                        <div class="qmn">
-                            <ul>
-                                <li><a href="info.html">지지씨멤버스</a></li>
-                                <li><a href="info.html">Q&A</a></li>
-                                <li><a href="info.html">자료실</a></li>
-                            </ul>
-                        </div>
-                        
-                        <div class="sitemap">
-                            <a href="smbtn">
-                                <!--
-                            <img src="images/header_mgbtn.png" alt="사이트맵">
-                            -->
-                            </a>
-                        </div>
-                        
-                    <div class="menu2">
-						<a href="#"></a>
-					</div>
-				
-					<nav class="left_gnbWrap">
-						<a href="#" class="close">close</a>
-						<ul class="left_gnb">
-							<li>
-								<a href="#">이용안내</a>
-								<ul>
-									<li><a href="info.html">관람안내</a></li>
-                                    <li><a href="info.html">시설안내</a></li>
-                                    <li><a href="info.html">대관안내</a></li>
-                                    <li><a href="info.html">기증안내</a></li>
-                                    <li><a href="info.html">오시는길</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="#">전시</a>
-								<ul>
-									<li><a href="info.html">전시</a></li>
-                                    <li><a href="info.html">아카이브</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="#">교육</a>
-								<ul>
-                                    <li><a href="info.html">전체보기</a></li>
-                                    <li><a href="info.html">청소년</a></li>
-                                    <li><a href="info.html">성인</a></li>
-                                    <li><a href="info.html">어린이</a></li>
-                                    <li><a href="info.html">사회복지</a></li>
-                                    <li><a href="info.html">동호회</a></li>
-                                    <li><a href="info.html">문화행사</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="#">소식</a>
-								<ul>
-                                    <li><a href="info.html">공고공지</a></li>
-                                    <li><a href="info.html">박물관새소식</a></li>
-                                    <li><a href="info.html">뉴스레터</a></li>
-                                    <li><a href="info.html">관장과의 대화</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="#">유물</a>
-								<ul>
-                                    <li><a href="info.html">소장유물</a></li>
-                                    <li><a href="info.html">기증자 현황</a></li>
-                                    <li><a href="info.html">유물열람 안내</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="#">박물관</a>
-								<ul>
-                                    <li><a href="info.html">박물관소개</a></li>
-                                    <li><a href="info.html">뮤지엄파크소개</a></li>
-                                    <li><a href="info.html">미션과 비전</a></li>
-                                    <li><a href="info.html">연혁</a></li>
-                                    <li><a href="info.html">박물관직원</a></li>
-                                    <li><a href="info.html">청소년자원봉사</a></li>
-								</ul>
-							</li>
-						</ul>
-					</nav>
-                    </div>
                 </div>
-            </header>
-            <div class="anchors">
-                <img src="images/location_01_main.png" alt="앵커">
             </div>
+        </header>
+
+        <!--앵커영역1
+	<div class="anchors">
+		<img src="images/location_01_main.png" alt="앵커">
+	</div>
+    -->
+        <!--앵커영역2-->
+        <div id="fp-nav" class="fp-right">
+            <!--class="fp-right fp-show-active"-->
+            <ul>
+                <li>
+                    <a href="#firstPage" class>
+                        <span class="fp-sr-only">Main</span>
+                        <span></span>
+                    </a>
+                    <div class="fp-toolip fp-right">Main</div>
+                </li>
+                <li>
+                    <a href="#secondPage" class>
+                        <span class="fp-sr-only">박물관소식</span>
+                        <span></span>
+                    </a>
+                    <div class="fp-toolip fp-right">박물관소식</div>
+                </li>
+                <li>
+                    <a href="#3rdPage" class>
+                        <span class="fp-sr-only">전시</span>
+                        <span></span>
+                    </a>
+                    <div class="fp-toolip fp-right">전시</div>
+                </li>
+                <li>
+                    <a href="#4thpage" class>
+                        <span class="fp-sr-only">소장유물</span>
+                        <span></span>
+                    </a>
+                    <div class="fp-toolip fp-right">소장유물</div>
+
+                </li>
+                <li>
+                    <a href="#lastPage" class>
+                        <span class="fp-sr-only">Main</span>
+                        <span></span>
+                    </a>
+                    <div class="fp-toolip fp-right">Main</div>
+
+                </li>
+            </ul>
+        </div>
+
+
+        <!--본문(풀페이지)영역-->
+        <div id="fullpage">
+            <!--메인이미지-->
+            <article class="section" id="mainimg">
+                <!--*id="main_top"-->
+                <h1 class="hidden">메인이미지</h1>
+                <!--메인슬라이드버튼영역
             <div class="main_slidebtn">
-                <!--메인 슬라이드 버튼
-                   <div class="btn_prev">
+                <!--메인 슬라이드버튼
+                <div class="btn_prev">
                     <a href="#">
                         <img src="images/sbtn_prev.png" alt="이전">
                     </a>
@@ -256,34 +410,48 @@ function mobile_menu(){
                         <img src="images/sbtn_next.png" alt="이후">
                     </a>
                 </div>
-                -->
+                <!--메인 슬라이드바
                 <div class="slide_bar">
                     <a href="#">
                         <img src="images/main_slidebar(2).png" alt="슬라이드바" class="sdbar">
-                        <img src="images/mb_main_slidebar.png" alt="슬라이드바" class="mb_sdbar">
-                    
+                        <img src="images/mb_main_slidebar.png" alt="슬라이드바" class="mb_sdbar">                    
                     </a>
                 </div>
-            </div>
+            </div>-->
 
-            <div class="main_silde">
-                <ul>
-                    <li class="sldie_con01">
-                        <div class="hidden">메인이미지_경기별곡</div>
-                        <div class="con01_text">
-                            <span class="con_gobtn">
-                                <a href="info.html" target="_self" title="경기별곡 바로가기"></a>
-                            </span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+                <!--메인슬라이드(제이쿼리추가) 영역-->
+                <section class="lazy slider" data-sizes="50vw">
+					<div class="main01">
+                 	<a href=""></a>                  
+                  	<img src="images/main_viewbtn.png" class="viewbtn">
+                   </div>                    
+                    <div  class="main02">
+                    <img src="images/main_viewbtn.png" class="viewbtn">
+                    </div>
+                    <!--
+                    <div>
+                        <img src="images/main_sdimg_none.png">
+                    </div>
+                    <div>
+                        <img src="images/main_sdimg_none.png">
+                    </div>
+                    <div>
+                        <img src="images/main_sdimg_none.png">
+                    </div>
+                    <div>
+                        <img src="images/main_sdimg_none.png">
+                    </div>
+                    -->
+                </section>
+            </article>
 
-        <!--메인 콘텐츠-->
-        <main id="contents">
-            <section class="notice">
-                <div class="inner">
+            <!--메인 콘텐츠-->
+            <!--<main id="contents">-->
+            <!--메인 콘텐츠_박물관소식-->
+            <section class="section" id="notice">
+                <!--class="notice"-->
+                <div class="intro">
+                    <!--class="inner"-->
                     <div class="notice_set">
                         <div class="box_t">
                             <h3>박물관 소식</h3>
@@ -334,9 +502,16 @@ function mobile_menu(){
                         </div>
                     </div>
                 </div>
+                <!--
+				<img src="images/con01_bgimg02.png" alt="박물관전경" class="noticeimg">
+				-->
             </section>
-            <section class="exhibition">
-                <div class="inner">
+
+            <!--메인 콘텐츠_전시-->
+            <section class="section" id="exhibition">
+                <!--class="exhibition"-->
+                <div class="intro">
+                    <!--class="inner"-->
                     <div class="exhibit_title">
                         <h3>전 시</h3>
                     </div>
@@ -348,20 +523,22 @@ function mobile_menu(){
                                         <h4>여성의 예복, 녹색 원삼</h4>
                                         <p class="ex_info">
                                             2018. 05 .01 ~ 2020. 12. 31<br>
-                                            <span>Google Arts & Culture</span></p>
+                                            <span>Google Arts & Culture</span>
+                                        </p>
                                         <p class="ex_cg">온라인전시</p>
-                                    <div>
-                                    <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
-                                    </div>
+                                        <div>
+                                            <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
+                                        </div>
                                     </a>
-                                    
+
                                 </li>
                                 <li class="box_con2">
                                     <a href="info.html">
                                         <h4>요지연도</h4>
                                         <p class="ex_info">
                                             2018. 05 .01 ~ 2020. 12. 31<br>
-                                            <span>Google Arts & Culture</span></p>
+                                            <span>Google Arts & Culture</span>
+                                        </p>
                                         <p class="ex_cg">온라인전시</p>
                                         <div>
                                             <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
@@ -373,7 +550,8 @@ function mobile_menu(){
                                         <h4>장한종의 책가도 병풍</h4>
                                         <p class="ex_info">
                                             2018. 05 .01 ~ 2020. 12. 31<br>
-                                            <span>Google Arts & Culture</span></p>
+                                            <span>Google Arts & Culture</span>
+                                        </p>
                                         <p class="ex_cg">온라인전시</p>
                                         <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
                                     </a>
@@ -383,7 +561,8 @@ function mobile_menu(){
                                         <h4>경기도박물관 소장품전</h4>
                                         <p class="ex_info">
                                             2018. 05 .01 ~ 2020. 12. 31<br>
-                                            <span>Google Arts & Culture</span></p>
+                                            <span>Google Arts & Culture</span>
+                                        </p>
                                         <p class="ex_cg">온라인전시</p>
                                         <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
                                     </a>
@@ -406,8 +585,38 @@ function mobile_menu(){
                     </div>
                 </div>
             </section>
-            <section class="relics">
-                <div class="inner">
+            <!--
+			  <section class="variable slider">
+    <div>
+      <img src="http://placehold.it/350x300?text=1">
+    </div>
+    <div>
+      <img src="http://placehold.it/200x300?text=2">
+    </div>
+    <div>
+      <img src="http://placehold.it/100x300?text=3">
+    </div>
+    <div>
+      <img src="http://placehold.it/200x300?text=4">
+    </div>
+    <div>
+      <img src="http://placehold.it/350x300?text=5">
+    </div>
+    <div>
+      <img src="http://placehold.it/300x300?text=6">
+    </div>
+  </section>
+  <!--
+  <div class="your-class">
+  <div>your content</div>
+  <div>your content</div>
+  <div>your content</div>
+	</div>
+	-->
+            <!--메인 콘텐츠_소장유물-->
+            <section class="section" id="relics">
+                <!--class="relics"-->
+                <div class="intro">
                     <div class="relics_title">
                         <h3>소장 유물</h3>
                     </div>
@@ -415,105 +624,321 @@ function mobile_menu(){
                         <div class="relics_tbox"></div>
                         <div class="relics_slide">
                             <ul class="relics_list">
+                                <!-- =class="relics_list / variable-width"-->
                                 <li class="silde_con1"><a href="info.html">
+                                        <img src="images/con03_img01.png">
                                         <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
                                     </a></li>
 
                                 <li class="silde_con2"><a href="info.html">
+                                        <img src="images/con03_img02.png">
                                         <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
                                     </a></li>
 
                                 <li class="silde_con3"><a href="info.html">
+                                        <img src="images/con03_img03.png">
+                                        <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
+                                    </a></li>
+
+                                <li class="silde_con1"><a href="info.html">
+                                        <img src="images/con03_img01.png">
+                                        <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
+                                    </a></li>
+
+                                <li class="silde_con2"><a href="info.html">
+                                        <img src="images/con03_img02.png">
+                                        <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
+                                    </a></li>
+
+                                <li class="silde_con3"><a href="info.html">
+                                        <img src="images/con03_img03.png">
                                         <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
                                     </a></li>
                             </ul>
                         </div>
                         <div class="slide_btn">
-                            <div class="btn_prev">
-                                <a href="#"><img src="images/sd_btn_prv.png" alt="이전"></a>
-                            </div>
-                            <div class="btn_next">
-                                <a href="#"><img src="images/sd_btn_next.png" alt="이후"></a>
-                            </div>
-                        </div>
-                        <div class="slide_bar">
-                            <a href="#"><img src="images/con03_slidebar.png" alt="슬라이드바"></a>
+                            <!--제이쿼리 적용 후 애로우버튼 삭제
+							<div class="btn_prev">
+								<a href="#"><img src="images/sd_btn_prv.png" alt="이전"></a>
+							</div>
+							<div class="btn_next">
+								<a href="#"><img src="images/sd_btn_next.png" alt="이후"></a>
+							</div>
+						</div>
+						<!--제이쿼리 적용 후 슬라이드바 삭제
+						<div class="slide_bar">
+							<a href="#"><img src="images/con03_slidebar.png" alt="슬라이드바"></a>
+						</div>
+						-->
                         </div>
                     </div>
-                </div>
             </section>
-        </main>
+            <!--</main>-->
 
-        <!--메인 하단-->
-        <footer id="footer">
-            <!--befor가상태그 라인-->
-            <div class="footer_set">
-                <h2 class="ft_logo">
-                    <a href="#"><img src="images/footer_logo.png" alt="logo"></a>
-                </h2>
-                <div class="footer_inner">
-                    <div class="utils">
-                        <ul class="private">
-                            <li><a href="info.html">개인정보취급방침</a></li>
-                            <li><a href="info.html">이용약관</a></li>
-                            <li><a href="info.html">행정정보공개</a></li>
-                            <li><a href="info.html">클린신고센터</a></li>
-                        </ul>
-                        <ul class="socials">
-                            <li>
-                                <a href="#" target="_blank" title="경기도박물관 페이스북"><img src="images/footer_sns_f.png" alt="페이스북"></a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank" title="경기도박물관 인스타그램"><img src="images/footer_sns_i.png" alt="인스타그램"></a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank" title="경기도박물관 카카오톡"><img src="images/footer_sns_k.png" alt="카카오톡"></a>
-                            </li>
-                        </ul>
-                        <!--after 클리어-->
-                    </div>
-                    <div class="ft_link">
-                        <div class="site_ggcf">
-                            <a href="#">
-                                <h4>경기문화재단</h4>
-                                <img src="images/footer_gobtn.png" alt="경기문화재단" class="site_ggcf">
-                            </a>
-                        </div>
-                        <div class="site_gcm">
-                            <a href="#">
-                                <h4>경기도어린이박물관</h4>
-                                <img src="images/footer_gobtn.png" alt="경기문화재단" class="site_gcm">
-                            </a>
-                        </div>
-                        <div class="site_nj">
-                            <a href="#">
-                                <h4>백남준아트센터</h4>
-                                <img src="images/footer_gobtn.png" alt="경기문화재단" class="site_nj">
-                            </a>
-                        </div>
-                    </div>
-                    <ul class="rights">
-                        <li class="address">
-                            (재)경기문화재단 경기도박물관 (17072) 경기도 용인시 기흥구 상갈로 6 (상갈동)
-                        </li>
-                        <li class="about">
-                            <ul class="about_list">
-                                <li><span>사업자등록번호 &nbsp</span> 142-82-01158</li>
-                                <li><span>| &nbsp 대표이사 &nbsp</span> 강헌</li>
+            <!--메인 하단-->
+            <footer class="section fp-auto-height" id="footer">
+                <!--id="footer"-->
+                <!--befor가상태그 라인-->
+                <div class="footer_set">
+                    <h2 class="ft_logo">
+                        <a href="#"><img src="images/footer_logo.png" alt="logo"></a>
+                    </h2>
+                    <div class="footer_inner">
+                        <div class="utils">
+                            <ul class="private">
+                                <li><a href="info.html">개인정보취급방침</a></li>
+                                <li><a href="info.html">이용약관</a></li>
+                                <li><a href="info.html">행정정보공개</a></li>
+                                <li><a href="info.html">클린신고센터</a></li>
                             </ul>
-                        <li class="contact">
-                            <ul class="contact_list">
-                                <li class="tel"><span>대표전화 &nbsp</span> 031-288-5300</li>
-                                <li class="tel_info"><span>| &nbsp 관람안내 &nbsp</span> 031-288-5400</li>
-                                <li class="fax"><span>| &nbsp FAX &nbsp</span> 031-288-5339</li>
+                            <ul class="socials">
+                                <li>
+                                    <a href="#" target="_blank" title="경기도박물관 페이스북"><img src="images/footer_sns_f.png" alt="페이스북"></a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" title="경기도박물관 인스타그램"><img src="images/footer_sns_i.png" alt="인스타그램"></a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" title="경기도박물관 카카오톡"><img src="images/footer_sns_k.png" alt="카카오톡"></a>
+                                </li>
                             </ul>
-                        </li>
-                        <li class="copy">
-                            © Copyright GGCF. ALL RIGHTS RESERVED.
-                        </li>
-                    </ul>
+                            <!--after 클리어-->
+                        </div>
+                        <div class="ft_link">
+                            <div class="site_ggcf">
+                                <a href="#">
+                                    <h4>경기문화재단</h4>
+                                    <img src="images/footer_gobtn.png" alt="경기문화재단" class="site_ggcf">
+                                </a>
+                            </div>
+                            <div class="site_gcm">
+                                <a href="#">
+                                    <h4>경기도어린이박물관</h4>
+                                    <img src="images/footer_gobtn.png" alt="경기문화재단" class="site_gcm">
+                                </a>
+                            </div>
+                            <div class="site_nj">
+                                <a href="#">
+                                    <h4>백남준아트센터</h4>
+                                    <img src="images/footer_gobtn.png" alt="경기문화재단" class="site_nj">
+                                </a>
+                            </div>
+                        </div>
+                        <ul class="rights">
+                            <li class="address">
+                                (재)경기문화재단 경기도박물관 (17072) 경기도 용인시 기흥구 상갈로 6 (상갈동)
+                            </li>
+                            <li class="about">
+                                <ul class="about_list">
+                                    <li><span>사업자등록번호 &nbsp</span> 142-82-01158</li>
+                                    <li><span>| &nbsp 대표이사 &nbsp</span> 강헌</li>
+                                </ul>
+                            <li class="contact">
+                                <ul class="contact_list">
+                                    <li class="tel"><span>대표전화 &nbsp</span> 031-288-5300</li>
+                                    <li class="tel_info"><span>| &nbsp 관람안내 &nbsp</span> 031-288-5400</li>
+                                    <li class="fax"><span>| &nbsp FAX &nbsp</span> 031-288-5339</li>
+                                </ul>
+                            </li>
+                            <li class="copy">
+                                © Copyright GGCF. ALL RIGHTS RESERVED.
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        </div>
     </div>
-</body></html>
+
+
+
+    <!--풀페이지 스크롤 스크립트-->
+    <!--풀페이지 스크롤 + OutoHeight + 애니메이션 스크립트-->
+    <script type="text/javascript" src="js/fullpage.js"></script>
+
+    <script type="text/javascript" src="examples.js"></script>
+
+    <script type="text/javascript">
+        var myFullpage = new fullpage('#fullpage', {
+            //sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
+            verticalCentered: true,
+            anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+            navigation: true,
+            navigationTooltips: ['Main', '박물관소식', '전시', '소장유물'],
+            showActiveTooltip: true,
+            //menu: '#menu',
+            afterLoad: function(origin, destination, direction) {
+                //section 2
+                if (destination.index == 1) { //section2->notice, p->h3, img->noticeimg                				
+                    //document.querySelector('#notice').querySelector('.noticeimg').style.left = 0 + 'px';
+                    document.querySelector('#notice').querySelector('.viewbtn').style.left = 82 + '%';
+                    //document.querySelector('#notice').querySelector('.noticeimg').style.opacity = 1;
+                    document.querySelector('#notice').querySelector('.viewbtn').style.opacity = 1;
+
+                    document.querySelector('#notice').querySelector('.box_t').style.opacity = 1;
+                    document.querySelector('#notice').querySelector('.box_b').style.opacity = 1;
+
+
+
+                }
+
+                //back to original state
+                else if (origin && origin.index == 1) {
+                    //document.querySelector('#notice').querySelector('.noticeimg').style.left = 10 + '%';
+                    document.querySelector('#notice').querySelector('.viewbtn').style.left = 70 + '%';
+                    //document.querySelector('#notice').querySelector('.noticeimg').style.opacity = 0;
+                    document.querySelector('#notice').querySelector('.viewbtn').style.opacity = 0;
+
+                    document.querySelector('#notice').querySelector('.box_t').style.opacity = 0;
+
+                    document.querySelector('#notice').querySelector('.box_b').style.opacity = 0;
+
+                }
+
+                //section 3 is using the state classes to fire the animation
+                //see the CSS code above!
+            }
+
+        });
+
+    </script>
+
+
+    <!--슬라이드 스크립트-->
+    <!--메인 슬라이드 스크립트-->
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+    <script src="js/slick.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        $(document).on('ready', function() {
+
+            //메인슬라이드 스크립트
+            $(".lazy").slick({
+                lazyLoad: 'ondemand', // ondemand progressive anticipated
+                infinite: true,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                arrows: false,
+                /*dots: true,*/
+                responsive: [{
+                        breakpoint: 1024,
+                        settings: {
+                            arrows: false,
+                            dots: true
+                        }
+                    },
+                    {
+                        breakpoint: 767 /*600*/ ,
+                        settings: {
+                            arrows: false,
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+
+            });
+        });
+
+    </script>
+
+
+    <!--콘텐츠 슬라이드 스크립트-->
+    <script type="text/javascript" src="js/slick.min.js"></script>
+    <script type="text/javascript">
+        //콘텐츠(유물)슬라이드 스크립트0
+
+        $(document).ready(function() {
+
+            $('.relics_list').slick({
+                dots: true,
+                arrows: true,
+                infinite: true,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                speed: 300,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                responsive: [{
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1,
+                            infinite: true,
+                            dots: true
+                        }
+                    },
+                    {
+                        breakpoint: 767 /*600*/ ,
+                        settings: {
+                            arrows: false,
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                    // You can unslick at a given breakpoint now by adding(다음을 추가하여 주어진 브레이킹포인트에서 언슬릭 할 수 있다):
+                    // settings: "unslick"
+                    // instead of a settings object
+                ]
+            });
+
+        });
+
+        //콘텐츠(유물)슬라이드 스크립트 1
+        /*
+        	$('.relics_list').slick({
+        		  dots: true,
+        		  infinite: true,
+        		  speed: 300,
+        		  slidesToShow: 1,
+        		  centerMode: true,
+        		  variableWidth: true
+        	});	
+        	*/
+
+        /*		
+        		$('.relics_list').slick({
+          dots: true,
+          infinite: true,
+          centerPadding: '10px',
+          centerMode: true,
+          slidesToShow: 3,
+          responsive: [
+        	{
+        	  breakpoint: 768,
+        	  settings: {
+        		arrows: false,
+        		centerMode: true,
+        		centerPadding: '40px',
+        		slidesToShow: 3
+        	  }
+        	},
+        	{
+        	  breakpoint: 480,
+        	  settings: {
+        		arrows: false,
+        		centerMode: true,
+        		centerPadding: '40px',
+        		slidesToShow: 1
+        	  }
+        	}
+          ]
+        });
+        */
+
+        /*
+        //콘텐츠(유물)슬라이드 스크립트2
+        $(".variable").slick({
+        	dots: true,
+        	infinite: true,
+        	variableWidth: true
+        });
+        */
+
+    </script>
+
+
+
+</body>
+
+</html>
