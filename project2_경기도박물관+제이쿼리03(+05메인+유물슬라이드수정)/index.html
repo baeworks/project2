@@ -9,13 +9,9 @@
 
     <!--텍스트효과 CSS-->
 
-    <!--풀페이지스크롤 + 애니메이션 CSS-->
+    <!--풀페이지스크롤 + 메인슬라이드 + 애니메이션 CSS-->
     <link rel="stylesheet" type="text/css" href="css/fullpage.css" />
-
-    <!--메인이미지슬라이드 CSS-->
-    <link rel="stylesheet" type="text/css" href="css/slick.css">
-    <link rel="stylesheet" type="text/css" href="css/slick-theme.css">
-
+    
     <!--유물슬라이드 CSS-->
     <link rel="stylesheet" type="text/css" href="css/slick2.css" />
     <!--// Add the new slick-theme.css if you want the default styling-->
@@ -101,9 +97,39 @@
 
     </script>
 
-
-    <!--풀페이지 애니메이션 효과 스타일-->
+   
     <style>
+		
+/* 메인슬라이드(풀페이지 백그라운드 슬라이드) - 이미지 */
+	/* Backgrounds will cover all the section
+	* --------------------------------------- */
+	.section{
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+	}
+	/*.slide{
+		background-size: cover;		
+	}*/
+		
+	/*Adding background for the slides
+	* --------------------------------------- */
+	#slide1{
+		background-image: url(images/main_sdimg_none.png);
+		padding: 6% 0 0 0;	
+	}
+	#slide2{
+		background-image: url(images/con_bg02.jpg);/*imgs/bg5.jpg*/
+		padding: 6% 0 0 0;		
+	}
+		
+	/* Overwriting styles for the navigation dots (to place it where we want)
+	* --------------------------------------- */
+	.fp-slidesNav.bottom{
+		bottom: 20%/*25px*/;
+	}
+		
+/*풀페이지 애니메이션 효과 스타일 */
         #exhibition .intro {
             overflow: hidden;
         }
@@ -186,8 +212,6 @@
         }
         
     </style>
-
-
 </head>
 
 <body>
@@ -385,7 +409,6 @@
                         <span></span>
                     </a>
                     <div class="fp-toolip fp-right">Main</div>
-
                 </li>
             </ul>
         </div>
@@ -393,11 +416,12 @@
 
         <!--본문(풀페이지)영역-->
         <div id="fullpage">
-            <!--메인이미지-->
+           
+            <!--메인이미지 슬라이드 영역-->
             <article class="section" id="mainimg">
                 <!--*id="main_top"-->
                 <h1 class="hidden">메인이미지</h1>
-                <!--메인슬라이드버튼영역
+                <!--메인 슬라이드버튼&바 영역
             <div class="main_slidebtn">
                 <!--메인 슬라이드버튼
                 <div class="btn_prev">
@@ -418,8 +442,8 @@
                     </a>
                 </div>
             </div>-->
-
-                <!--메인슬라이드(제이쿼리추가) 영역-->
+            
+            <!--메인슬라이드(slick - lazy slider 제이쿼리추가) 영역
                 <section class="lazy slider" data-sizes="50vw">
 					<div class="main01">
                  	<a href=""></a>                  
@@ -427,8 +451,7 @@
                    </div>                    
                     <div  class="main02">
                     <img src="images/main_viewbtn.png" class="viewbtn">
-                    </div>
-                    <!--
+                    </div>                    
                     <div>
                         <img src="images/main_sdimg_none.png">
                     </div>
@@ -440,9 +463,20 @@
                     </div>
                     <div>
                         <img src="images/main_sdimg_none.png">
-                    </div>
-                    -->
-                </section>
+                    </div>                    
+                </section>-->
+                
+        <!--메인슬라이드(풀페이지 백그라운드 슬라이드) 영역-->
+        <div class="slide" id="slide1" data-anchor="slide1">        
+            <div class="slide_text">
+              <span class="slide_gobtn">
+                 <a href="info.html" target="_self" title="경기별곡 바로가기"></a>
+              </span>
+            </div>
+        </div>
+		<div class="slide" id="slide2" data-anchor="slide2">
+           <h1>Slide Background img2</h1>
+           </div>    
             </article>
 
             <!--메인 콘텐츠-->
@@ -569,7 +603,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="box2">
+                        <div class="box2"><!--div에서 li로 변경하기-->
                             <div class="box_con5">
                                 <a href="info.html">
                                     <h4>경기별곡<br>: 민화, 경기를 노래하다</h4>
@@ -624,36 +658,60 @@
                         <div class="relics_tbox"></div>
                         <div class="relics_slide">
                             <ul class="relics_list">
-                                <!-- =class="relics_list / variable-width"-->
+                                <!--class="relics_list / variable-width"-->
                                 <li class="silde_con1"><a href="info.html">
-                                        <img src="images/con03_img01.png">
+                                        <img src="images/con03_img01.png" class="slide_img01">
+                                        <img src="images/con03_img01_hover.png" class="slide_img01_hover">
+                                        <p class="viewbtn_hover">자세히 보기</p>
+                                        <!--
                                         <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
+                                        -->
                                     </a></li>
 
                                 <li class="silde_con2"><a href="info.html">
-                                        <img src="images/con03_img02.png">
+                                        <img src="images/con03_img02.png" class="slide_img02">
+                                        <img src="images/con03_img02_hover.png" class="slide_img02_hover">
+                                        <p class="viewbtn_hover">자세히 보기</p>
+                                        <!--
                                         <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
+                                        -->
                                     </a></li>
 
                                 <li class="silde_con3"><a href="info.html">
-                                        <img src="images/con03_img03.png">
+                                        <img src="images/con03_img03.png" class="slide_img03">
+                                        <img src="images/con03_img03_hover.png" class="slide_img03_hover">
+                                        <p class="viewbtn_hover">자세히 보기</p>
+                                        <!--
                                         <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
+                                        -->
                                     </a></li>
-
+								
                                 <li class="silde_con1"><a href="info.html">
-                                        <img src="images/con03_img01.png">
+                                        <img src="images/con03_img01.png" class="slide_img01">
+                                        <img src="images/con03_img01_hover.png" class="slide_img01_hover">
+                                        <p class="viewbtn_hover">자세히 보기</p>
+                                        <!--
                                         <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
+                                        -->
                                     </a></li>
 
                                 <li class="silde_con2"><a href="info.html">
-                                        <img src="images/con03_img02.png">
+                                        <img src="images/con03_img02.png" class="slide_img02">
+                                        <img src="images/con03_img02_hover.png" class="slide_img02_hover">
+                                        <p class="viewbtn_hover">자세히 보기</p>
+                                        <!--
                                         <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
+                                        -->
                                     </a></li>
 
                                 <li class="silde_con3"><a href="info.html">
-                                        <img src="images/con03_img03.png">
+                                        <img src="images/con03_img03.png" class="slide_img03">
+                                        <img src="images/con03_img03_hover.png" class="slide_img03_hover">
+                                        <p class="viewbtn_hover">자세히 보기</p>
+                                        <!--
                                         <img src="images/viewbtn_hover.png" alt="더보기" class="viewbtn_hover">
-                                    </a></li>
+                                        -->
+                                    </a></li>                                    
                             </ul>
                         </div>
                         <div class="slide_btn">
@@ -672,10 +730,11 @@
 						-->
                         </div>
                     </div>
+				</div>
             </section>
             <!--</main>-->
 
-            <!--메인 하단-->
+            <!--메인 하단~푸터-->
             <footer class="section fp-auto-height" id="footer">
                 <!--id="footer"-->
                 <!--befor가상태그 라인-->
@@ -805,44 +864,19 @@
 
 
     <!--슬라이드 스크립트-->
-    <!--메인 슬라이드 스크립트-->
-    <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-    <script src="js/slick.js" type="text/javascript" charset="utf-8"></script>
-
+    <!--메인슬라이드 - 풀페이지 백그라운드 스크립트-->
+<script type="text/javascript" src="js/fullpage.js"></script>
     <script type="text/javascript">
-        $(document).on('ready', function() {
-
-            //메인슬라이드 스크립트
-            $(".lazy").slick({
-                lazyLoad: 'ondemand', // ondemand progressive anticipated
-                infinite: true,
-                autoplay: true,
-                autoplaySpeed: 2000,
-                arrows: false,
-                /*dots: true,*/
-                responsive: [{
-                        breakpoint: 1024,
-                        settings: {
-                            arrows: false,
-                            dots: true
-                        }
-                    },
-                    {
-                        breakpoint: 767 /*600*/ ,
-                        settings: {
-                            arrows: false,
-                            slidesToShow: 1,
-                            slidesToScroll: 1
-                        }
-                    }
-                ]
-
-            });
-        });
-
-    </script>
-
-
+    var myFullpage = new fullpage('#fullpage', {		
+        verticalCentered: false,
+		scrollingspeed: 1000,
+		Navigation: true,
+		navigationPosition: 'bottom',
+		slidesNavigation: true,
+		slidesNaviPosition: 'bottom'
+    });
+		</script>
+   
     <!--콘텐츠 슬라이드 스크립트-->
     <script type="text/javascript" src="js/slick.min.js"></script>
     <script type="text/javascript">
@@ -881,64 +915,8 @@
                     // instead of a settings object
                 ]
             });
-
         });
-
-        //콘텐츠(유물)슬라이드 스크립트 1
-        /*
-        	$('.relics_list').slick({
-        		  dots: true,
-        		  infinite: true,
-        		  speed: 300,
-        		  slidesToShow: 1,
-        		  centerMode: true,
-        		  variableWidth: true
-        	});	
-        	*/
-
-        /*		
-        		$('.relics_list').slick({
-          dots: true,
-          infinite: true,
-          centerPadding: '10px',
-          centerMode: true,
-          slidesToShow: 3,
-          responsive: [
-        	{
-        	  breakpoint: 768,
-        	  settings: {
-        		arrows: false,
-        		centerMode: true,
-        		centerPadding: '40px',
-        		slidesToShow: 3
-        	  }
-        	},
-        	{
-        	  breakpoint: 480,
-        	  settings: {
-        		arrows: false,
-        		centerMode: true,
-        		centerPadding: '40px',
-        		slidesToShow: 1
-        	  }
-        	}
-          ]
-        });
-        */
-
-        /*
-        //콘텐츠(유물)슬라이드 스크립트2
-        $(".variable").slick({
-        	dots: true,
-        	infinite: true,
-        	variableWidth: true
-        });
-        */
 
     </script>
-
-
-
 </body>
-
 </html>

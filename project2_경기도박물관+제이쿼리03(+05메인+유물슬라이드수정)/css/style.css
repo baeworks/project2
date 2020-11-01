@@ -259,6 +259,48 @@ a {
     height: 156px;
 }
 
+/* 메인슬라이드 - 텍스트&뷰버튼 */
+#slide2 h1{
+    text-align: center;
+}
+
+.slide_text{
+    position: relative;    
+    top: 7.5%;
+    /*660px*/
+    left: 30%;
+    /*583px*/
+    width: 280px;
+    height: 230px;
+}
+
+.slide_text .slide_gobtn a{
+    position: absolute;
+    top: 39%;
+    /*80px;*/
+    right: 0px;
+    /*235px*/
+    display: block;
+    width: 31px;
+    height: 31px;
+    font-size: 0;
+    /*box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);*/
+    background-image: url(../images/main_viewbtn.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    transform: scale(1);
+    transition: all 0.5s;
+}
+
+.slide_text .slide_gobtn a:hover {
+    transform: scale(1.2);
+    /*transform: rotate(180deg);*/
+    transition: all 0.8s;
+}
+
+
+/* 메인슬라이드 - 바&버튼 */
 .main_slidebtn {
     position: absolute;
     top: 50%;
@@ -302,9 +344,29 @@ a {
         display: none;
 }
 
+/* 메인슬라이드(풀페이지 백그라운드 슬라이드) - 이미지
+	/* Backgrounds will cover all the section
+	* --------------------------------------- *
+	#section1
+    #slide1,
+    #slide2{
+		background-size: cover;
+		background-attachment: fixed;
+	}
+	/*Adding background for the slides
+	* --------------------------------------- *
+	#slide1{
+		background-image: url(../images/main_sdimg_none.png);
+		padding: 6% 0 0 0;		
+	}
+	#slide2{
+		background-image: url(../images/main_slideimg01.png);/*imgs/bg5.jpg*
+		padding: 6% 0 0 0;		
+	}
+ */
 
-/* 메인이미지 */
-#mainimg {/*main_top 수정*/
+/*메인이미지 기존 코드
+#mainimg {/*main_top 수정*
     position: relative;
     width: 100%;
     height: 1006px;	
@@ -314,10 +376,10 @@ a {
     background-size: cover;
     background-position: center center;    
     background-attachment: fixed;
-	*/
-}
+	*
+}*/
 
-	/* 메인 슬라이드( 제이쿼리추가)영역 시작*/
+	/* 메인 슬라이드( 제이쿼리추가)영역 시작
     .slider {
         width: 100%;
         margin: 100px auto;
@@ -327,10 +389,10 @@ a {
       margin: 0px 10px;
     }
 
-    .slick-slide div{/*.slick-slide img 수정*/
+    .slick-slide div{/*.slick-slide img 수정*
     width: 100%;
-    height: 906px;
-		position: relative;
+    /*height: 906px;*
+	position: relative;
     }
 
 .slick-slide .main01{
@@ -360,21 +422,21 @@ a {
     background-position: center center;
 }
 /*
-.slick-slide .main01>.main01_01{/*추가부분
+.slick-slide .main01>.main01_01{/*추가부분*
 	float: left;
 	display: inline-block;
 	margin-left: 10%;	
 	width: 500px;
 	height: 500px;
 }
-.slick-slide .main01>.main01_02{/*추가부분
+.slick-slide .main01>.main01_02{/*추가부분*
 	float: right;
 	display: inline-block;
 	margin-right: 10%;	
 	width: 500px;
 	height: 500px;
 }
-*/
+
     .slick-prev:before,
     .slick-next:before {
       color: black;
@@ -382,18 +444,19 @@ a {
 
     .slick-slide {
       transition: all ease-in-out .3s;
-		/*opacity: 1; 삭제*/
+		/*opacity: 1; 삭제*
       
     }
     
     .slick-active {
-      /*opacity: 5; 삭제*/
+      /*opacity: 5; 삭제*
     }
 
     .slick-current {
       opacity: 1;
     }
-	/* 메인 슬라이드(제이쿼리추가)영역 끝*/
+
+메인 슬라이드(제이쿼리추가)영역 끝*/
 
 
 /* 메인 콘텐츠 */
@@ -571,7 +634,7 @@ td > span {
 /* 메인콘텐츠_전시 */
 #exhibition {/*#contents .exhibition */
     width: 100%;
-    height: 1006px;
+    height: 1006px !important;
     background-image: url(../images/con_bg02.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -716,13 +779,13 @@ td > span {
 
 .exhibit_box a:hover .viewbtn_hover {
     opacity: 1;
-    transform: scale(0.9);
+    transform: scale(0.8);
     transition: all 0.5s
 }
 
 .exhibit_box li:hover .viewbtn_hover {
     opacity: 1;
-    transform: scale(0.9);
+    transform: scale(0.8);
     transition: all 0.5s
 }
 
@@ -885,7 +948,7 @@ td > span {
 
 .box2 > .box_con5 > a:hover .viewbtn_hover {
     opacity: 1;
-    transform: scale(0.9);
+    transform: scale(0.8);
     transition: all 0.5s;
 }
 
@@ -900,7 +963,7 @@ td > span {
 /* 메인콘텐츠_소장유물 */
 #relics {/*#contents .relics*/
     width: 100%;
-    height: 1006px;
+    height: 1006px !important;
     /*
     background-image: url(../images/con_bg03.png);
     background-repeat: no-repeat;
@@ -955,7 +1018,7 @@ td > span {
 }
 
 .relics_set .relics_slide > ul > li {
-    position: relative;
+    /*position: relative;*/
     float: left;
     width: 304px;
     height: 500px;
@@ -973,6 +1036,7 @@ td > span {
 	/* height: 100%; */
     transform: scale(1);
     transition: all 0.6s;
+	position: relative;
 }
 
 .relics_set .relics_slide > ul > li > a:hover {
@@ -980,22 +1044,82 @@ td > span {
     transition: all 0.6s;
 }
 
-.relics_slide > ul > li > a > .viewbtn_hover {
+/*
+.relics_slide relics_list a .viewbtn_hover {
     opacity: 0;
     position: absolute;
     top: 44.6%;
-    /*중앙 44.6%; 223px*/
+    /*중앙 44.6%; 223px*
     left: 41.4%;
-    /*중앙 41.4%; 126px*/
+    /*중앙 41.4%; 126px*
+    transform: scale(0.5);
+    transition: all 0.5s;
+}*/
+
+
+
+/*뷰버튼 아이콘*
+.relics_slide .relics_list a .viewbtn_hover {	
+    opacity: 0;
+	position: absolute;
+    top: 44.6%;
+	left: 41.4%;
     transform: scale(0.5);
     transition: all 0.5s;
 }
-
-.relics_slide > ul > li > a:hover .viewbtn_hover {
+.relics_slide .relics_list a:hover .viewbtn_hover{	
     opacity: 1;
-    transform: scale(1);
+    transform: scale(0.8);
     transition: all 0.5s;
 }
+*/
+
+.relics_slide .relics_list a{
+    position: relative;
+    color: #fff;
+    font-size: 1.4rem;
+}
+.relics_slide .relics_list .silde_con1 .viewbtn_hover,
+.relics_slide .relics_list .silde_con2 .viewbtn_hover,
+.relics_slide .relics_list .silde_con3 .viewbtn_hover{
+    display: inline-block;
+    position: absolute;
+    top: 44.6%;
+	left: 36%;
+    padding: 10px 15px;
+    border: 1px solid #1f5152;
+    background-color: #1f5152;
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.relics_slide .relics_list .silde_con1 a:hover .viewbtn_hover,
+.relics_slide .relics_list .silde_con2 a:hover .viewbtn_hover,
+.relics_slide .relics_list .silde_con3 a:hover .viewbtn_hover{
+    opacity: 1;
+    transition: all 0.5s;
+}
+
+
+
+.relics_slide .silde_con1 a .slide_img01_hover,
+.relics_slide .silde_con2 a .slide_img02_hover,
+.relics_slide .silde_con3 a .slide_img03_hover{
+	display: none;
+	transition: all 0.5s;
+}
+.relics_slide .silde_con1 a:hover .slide_img01_hover,
+.relics_slide .silde_con2 a:hover .slide_img02_hover,
+.relics_slide .silde_con3 a:hover .slide_img03_hover{
+	display: inline-block;
+	transition: all 0.5s;
+}
+.relics_slide .silde_con1 a:hover .slide_img01,
+.relics_slide .silde_con2 a:hover .slide_img02,
+.relics_slide .silde_con3 a:hover .slide_img03{
+	display: none;
+}
+
 
 .relics_slide .silde_con1 a {
     width: 304px;
@@ -1012,41 +1136,33 @@ td > span {
 .relics_slide .silde_con1 a:hover {
     width: 304px;
     height: 500px;
+    transition: all 0.5s;
+	/*
     background-image: url(../images/con03_img01_hover.png);
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover;
-    transition: all 0.5s;
+    background-size: cover;    
+	*/
 }
 
 .relics_slide .silde_con2 a {/*relics_slide*/
     width: 304px;
     height: 500px;
+    transition: all 0.5s;
 	/*
     background-image: url(../images/con03_img02.png);
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover;
-    transition: all 0.5s;
+    background-size: cover;    
 	*/
 }
 
 .relics_slide .silde_con2 a:hover {
     width: 304px;
     height: 500px;
-    background-image: url(../images/con03_img02_hover.png);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
     transition: all 0.5s;
-}
-
-
-.relics_slide .silde_con3 a {
-    width: 304px;
-    height: 500px;
 	/*
-    background-image: url(../images/con03_img03.png);
+    background-image: url(../images/con03_img02_hover.png);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -1054,14 +1170,29 @@ td > span {
 	*/
 }
 
+
+.relics_slide .silde_con3 a {
+    width: 304px;
+    height: 500px;
+    transition: all 0.5s;
+	/*
+    background-image: url(../images/con03_img03.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;    
+	*/
+}
+
 .relics_slide .silde_con3 a:hover {
     width: 304px;
     height: 500px;
+    transition: all 0.5s;
+	/*
     background-image: url(../images/con03_img03_hover.png);
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover;
-    transition: all 0.5s;
+    background-size: cover;    
+	*/
 }
 
 .relics_set .slide_btn {
@@ -1569,6 +1700,7 @@ a.close{
         width: 941px;
         height: auto;
         margin: 0 auto;
+        padding-top: 1%/*calc(500/304*100%)*/;
         overflow-x: hidden;        
     }
 
@@ -1903,10 +2035,15 @@ a.close{
     }
     
     /* 모바일_소장유물 */
+
     #contents .relics {
         width: 100%;
         height: auto;
         padding-bottom: 0%
+    }
+    #relics .intro {/*#contents .relics .inner*/
+        /*width: 98%;*/
+        padding-top: 15%;
     }
     .relics_title h3 {
         font-size: 3.8rem;
